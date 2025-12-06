@@ -3,7 +3,7 @@ export default function MobileNavbar({ isMenuOpen, setIsMenuOpen }) {
     <>
       {/* Mobile Menu Button */}
       <button
-        className="md:hidden flex flex-col gap-1.5 w-6"
+        className="lg:hidden flex flex-col gap-1.5 w-6"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
       >
@@ -14,7 +14,7 @@ export default function MobileNavbar({ isMenuOpen, setIsMenuOpen }) {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-50 px-6 pt-6">
+        <div className="lg:hidden fixed inset-0 bg-white z-50 px-6 pt-6">
           {/* Mobile Menu Header */}
           <div className="flex items-center justify-between mb-8">
             <div className="text-3xl font-bold text-[#34313D]">

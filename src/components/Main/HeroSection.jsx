@@ -2,14 +2,14 @@ import workingImage from "../../assets/working-with-computer.jpg";
 
 export default function HeroSection() {
   return (
-    <section className="pl-6 pt-8 pb-16 md:pl-24 md:pt-12 md:pb-24 lg:pl-32 lg:pt-16 lg:pb-32 overflow-hidden">
+    <section className="px-6 pt-8 pb-16 md:pl-24 md:pt-12 md:pb-24 lg:px-32 lg:pt-16 lg:pb-32 overflow-hidden">
       <div className="flex flex-col md:flex-row-reverse md:items-center md:gap-12 lg:gap-20">
         {/* Illustration - Right side on desktop, top on mobile */}
         <div className="md:flex-1 -mx-6 md:mx-0 mb-9 md:mb-0 relative">
           <img
             src={workingImage}
             alt="Illustration of a person working on a computer"
-            className="w-full h-auto"
+            className="w-[93.5%] ml-auto h-auto"
           />
         </div>
 

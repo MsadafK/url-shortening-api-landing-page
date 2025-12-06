@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header className="bg-white">
-      <nav className="px-6 py-6 md:px-24 lg:px-32 flex items-center justify-between">
+      <nav className="px-6 py-6 lg:px-32 flex items-center justify-between">
         <div className="flex items-center justify-between gap-12 ">
           {/* Logo */}
           <div className="text-3xl font-bold text-[#34313D]">
@@ -18,7 +18,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Auth Buttons */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           <a href="#" className="text-[#9E9AA8] hover:text-[#34313D] font-medium text-sm">
             Login
           </a>
