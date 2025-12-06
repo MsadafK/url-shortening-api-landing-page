@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* Custom Color Variables */
+@theme {
+  /* Gray Shades */
+  --color-gray-950: #232127;
+  --color-gray-900: #34313D;
+  --color-gray-500: #9E9AA8;
+  --color-gray-400: #BFBFBF;
+
+  /* Purple Shades */
+  --color-purple-950: #3A3054;
+  --color-purple-900: #4B3F6B;
+  --color-purple-50: #EFF1F7;
+
+  /* Blue Shades */
+  --color-blue-400: #2BD0D0;
+  --color-blue-300: #9AE3E3;
+
+  /* Red Shades */
+  --color-red-400: #F46363;
+
+  /* Custom Spacing (already available in Tailwind but confirming) */
+  --spacing-100: 8px;
+  --spacing-200: 16px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --spacing-500: 40px;
+  --spacing-600: 48px;
+  --spacing-700: 56px;
+  --spacing-900: 72px;
+  --spacing-1000: 80px;
+}
+
+/* Custom Typography */
+.text-preset-1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 90px;
+  letter-spacing: -2px;
+}
+
+.text-preset-2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -1px;
+}
+
+.text-preset-3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -1.05px;
+}
+
+.text-preset-4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.8px;
+}
+
+.text-preset-4-medium {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.8px;
+}
+
+.text-preset-5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 33px;
+}
+
+.text-preset-5-medium {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 33px;
+}
+
+.text-preset-6 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.text-preset-7 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.text-preset-7-medium {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+}
+
+.text-preset-7-medium-italic {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 32px;
+}
