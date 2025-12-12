@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header className="bg-white">
-      <nav className="px-6 py-6 lg:px-32 flex items-center justify-between">
+      <nav className="px-6 py-6 lg:px-24 xl:px-32 flex items-center justify-between">
         <div className="flex items-center justify-between gap-12 ">
           {/* Logo */}
           <div className="text-3xl font-bold text-[#34313D]">
