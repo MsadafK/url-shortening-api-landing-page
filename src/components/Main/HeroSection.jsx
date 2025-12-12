@@ -2,7 +2,7 @@ import workingImage from "../../assets/working-with-computer.jpg";
 
 export default function HeroSection() {
   return (
-    <section className="px-6 pt-8 pb-16 lg:pl-24 lg:pt-12 lg:pb-24 lg:pr-0 xl:pl-32 xl:pt-16 xl:pb-32 overflow-hidden">
+    <section className=" px-6 pt-8 pb-32 lg:pl-24 lg:pt-12 lg:pb-36 lg:pr-0 xl:pl-32 xl:pt-16 overflow-hidden">
       <div className="flex flex-col lg:flex-row-reverse lg:items-center lg:gap-12 xl:gap-20">
         {/* Illustration - Right side on desktop, top on mobile */}
         <div className="lg:flex-1 -mx-6 lg:mx-0 mb-9 lg:mb-0 relative">

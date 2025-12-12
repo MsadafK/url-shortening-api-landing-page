@@ -1,0 +1,147 @@
+import { useState } from 'react';
+
+export default function UrlShortener() {
+  const [url, setUrl] = useState('');
+  const [error, setError] = useState(false);
+  const [shortenedLinks, setShortenedLinks] = useState([]);
+
+  const handleShorten = () => {
+    if (!url.trim()) {
+      setError(true);
+      return;
+    }
+    
+    setError(false);
+    const shortCode = Math.random().toString(36).substring(2, 8);
+    const newLink = {
+      id: Date.now(),
+      original: url,
+      shortened: `https://rel.ink/${shortCode}`,
+      copied: false
+    };
+    
+    setShortenedLinks([newLink, ...shortenedLinks]);
+    setUrl('');
+  };
+
+  const handleCopy = (id, text) => {
+    navigator.clipboard.writeText(text);
+    setShortenedLinks(links =>
+      links.map(link =>
+        link.id === id ? { ...link, copied: true } : link
+      )
+    );
+    
+    setTimeout(() => {
+      setShortenedLinks(links =>
+        links.map(link =>
+          link.id === id ? { ...link, copied: false } : link
+        )
+      );
+    }, 2000);
+  };
+
+  return (
+    <div className="w-full px-6 lg:px-24 xl:px-32">
+      {/* Shortener Input Box */}
+      <div className="bg-purple-950 rounded-lg p-6 md:p-8 lg:p-12 relative overflow-hidden">
+        {/* Background SVG - Top Right */}
+        <svg 
+          
+          className="absolute bottom-0 left-0 w-[40%] md:w-[35%] lg:w-[32%] h-auto md:h-[100%]"
+          viewBox="0 0 582 139" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path fillRule="evenodd" clipRule="evenodd" d="M-134 90.0765C-134 142.8 -118.5 180.562 -61 204.953C-3.5 229.344 52.055 207.087 107.786 219.847C163.517 232.608 163.517 314.809 216 365.396C268.483 415.983 379.142 428.27 469.119 376.948C559.096 325.626 599.885 205.796 573 135.141C546.115 64.4854 494.593 0 246 0C-2.59314 0 -134 37.3533 -134 90.0765Z" fill="#EFF1F7"/>
+        </svg>
+
+        {/* Background SVG - Bottom Left */}
+        <svg 
+          className="absolute top-0 right-0 w-[50%] md:w-[45%] lg:w-[40%] h-auto md:h-[100%]"
+          viewBox="0 0 467 168" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_d_84139_885)">
+            <path fillRule="evenodd" clipRule="evenodd" d="M4 -93.9235C4 -41.2004 19.5 -3.43848 77 20.9529C134.5 45.3442 190.055 23.0865 245.786 35.847C301.517 48.6075 301.517 130.809 354 181.396C406.483 231.983 517.142 244.27 607.119 192.948C697.096 141.626 737.885 21.7965 711 -48.8591C684.115 -119.515 632.593 -184 384 -184C135.407 -184 4 -146.647 4 -93.9235Z" fill="#EFF1F7"/>
+          </g>
+          <defs>
+            <filter id="filter0_d_84139_885" x="0" y="-184" width="723.161" height="417.906" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dy="4"/>
+              <feGaussianBlur stdDeviation="2"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_84139_885"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_84139_885" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+
+        <div className="absolute inset-0 bg-purple-950 opacity-95 rounded-lg"></div>
+        
+        <div className="relative flex flex-col md:flex-row gap-4 md:gap-6">
+          <div className="flex-1">
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => {
+                setUrl(e.target.value);
+                setError(false);
+              }}
+              placeholder="Shorten a link here..."
+              className={`bg-white w-full px-6 py-3 md:py-4 lg:py-5 rounded-lg text-base md:text-lg outline-none ${
+                error ? 'border-3 border-red-400' : 'border-0'
+              }`}
+            />
+            {error && (
+              <p className="text-red-400 text-xs md:text-sm mt-2 italic">
+                Please add a link
+              </p>
+            )}
+          </div>
+          
+          <button
+            onClick={handleShorten}
+            className="bg-blue-400 hover:bg-blue-300 text-white font-bold text-base md:text-lg px-8 md:px-10 py-3 md:py-4 lg:py-5 rounded-lg whitespace-nowrap transition-colors"
+          >
+            Shorten it!
+          </button>
+        </div>
+      </div>
+
+      {/* Shortened Links Results */}
+      {shortenedLinks.length > 0 && (
+        <div className="mt-6 space-y-4">
+          {shortenedLinks.map((link) => (
+            <div
+              key={link.id}
+              className="bg-white rounded-lg p-4 md:p-5 lg:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-6 shadow-sm"
+            >
+              <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-6 border-b md:border-b-0 pb-3 md:pb-0">
+                <p className="text-gray-950 text-sm md:text-base lg:text-lg truncate">
+                  {link.original}
+                </p>
+                
+                <p className="text-blue-400 text-sm md:text-base lg:text-lg font-medium">
+                  {link.shortened}
+                </p>
+              </div>
+              
+              <button
+                onClick={() => handleCopy(link.id, link.shortened)}
+                className={`${
+                  link.copied ? 'bg-purple-950' : 'bg-blue-400 hover:bg-blue-300'
+                } text-white font-bold text-sm md:text-base px-6 md:px-8 lg:px-10 py-2 md:py-3 rounded-lg transition-colors whitespace-nowrap`}
+              >
+                {link.copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
