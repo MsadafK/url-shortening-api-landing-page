@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroSection from './HeroSection.jsx'
 import UrlShortener from './UrlShortener.jsx'
+import AdvancedStatistics from './AdvancedStatistics.jsx'
 
 export const Main = () => {
   return (
@@ -13,8 +14,9 @@ export const Main = () => {
       </div>
       
       {/* Future sections yahan add honge */}
-      <div className="mt-20 md:mt-24 lg:mt-28">
+      <div >
         {/* Next sections will go here */}
+        <AdvancedStatistics />
       </div>
     </>
   )
