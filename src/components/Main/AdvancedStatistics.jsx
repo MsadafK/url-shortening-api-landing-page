@@ -69,9 +69,9 @@ export default function AdvancedStatistics() {
               {/* Feature Card */}
               <div 
                 className="bg-white rounded-lg p-8 text-left relative z-10"
-                // style={{ 
-                //   marginTop: index === 0 ? '0' : index === 1 ? '44px' : '88px' 
-                // }}
+                style={{ 
+                  marginTop: index === 0 ? '0' : index === 1 ? '44px' : '88px' 
+                }}
               >
                 {/* Icon Circle */}
                 <div>
