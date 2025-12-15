@@ -65,14 +65,14 @@ export default function AdvancedStatistics() {
         {/* Features - Desktop (Horizontal) */}
         <div className="hidden lg:flex items-center justify-center gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="relative flex-1 max-w-[350px]">
+            <div key={index} className="bg-blue-500 relative flex-1 max-w-[350px]">
               {/* Feature Card */}
               <div 
-                className="bg-white rounded-lg p-8 text-left relative z-10"
-                style={{ 
-                  marginTop: index === 0 ? '0' : index === 1 ? '44px' : '88px' 
-                }}
-              >
+                className="bg-red-500 rounded-lg p-8 text-left relative z-10 h-[200px]"
+                // style={{ 
+                //   marginTop: index === 0 ? '0' : index === 1 ? '44px' : '88px' 
+                // }}
+                >
                 {/* Icon Circle */}
                 <div>
                   <img src={feature.icon} alt={feature.title} className="w-[88px] h-[88px] bg-purple-950 rounded-full flex items-center justify-center -mt-[60px] mb-8" />
