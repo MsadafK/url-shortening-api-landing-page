@@ -68,7 +68,7 @@ export default function AdvancedStatistics() {
             <div key={index} className="bg-blue-500 relative flex-1 max-w-[350px]">
               {/* Feature Card */}
               <div 
-                className="bg-red-500 rounded-lg p-8 text-left relative z-10 h-[200px]"
+                className="bg-red-400 rounded-lg p-8 text-left relative z-10 h-[200px]"
                 // style={{ 
                 //   marginTop: index === 0 ? '0' : index === 1 ? '44px' : '88px' 
                 // }}
