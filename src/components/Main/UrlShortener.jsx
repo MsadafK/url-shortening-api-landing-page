@@ -4,24 +4,97 @@ export default function UrlShortener() {
   const [url, setUrl] = useState('');
   const [error, setError] = useState(false);
   const [shortenedLinks, setShortenedLinks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleShorten = () => {
+  const handleShorten = async () => {
     if (!url.trim()) {
       setError(true);
       return;
     }
     
-    setError(false);
-    const shortCode = Math.random().toString(36).substring(2, 8);
-    const newLink = {
-      id: Date.now(),
-      original: url,
-      shortened: `https://rel.ink/${shortCode}`,
-      copied: false
+    // Advanced URL validation function
+    const isValidURL = (string) => {
+      try {
+        // Try to create a URL object - most reliable validation
+        const urlObj = new URL(string);
+        
+        // Check if protocol is http or https
+        if (!['http:', 'https:'].includes(urlObj.protocol)) {
+          return false;
+        }
+        
+        // Check if hostname exists and is valid
+        if (!urlObj.hostname || urlObj.hostname.length === 0) {
+          return false;
+        }
+        
+        // Check if hostname has at least one dot (domain.tld)
+        if (!urlObj.hostname.includes('.')) {
+          return false;
+        }
+        
+        return true;
+      } catch (e) {
+        // If URL() fails, try adding protocol and validate again
+        try {
+          const urlWithProtocol = string.startsWith('http') ? string : `https://${string}`;
+          const urlObj = new URL(urlWithProtocol);
+          
+          if (!['http:', 'https:'].includes(urlObj.protocol)) {
+            return false;
+          }
+          
+          if (!urlObj.hostname || urlObj.hostname.length === 0) {
+            return false;
+          }
+          
+          if (!urlObj.hostname.includes('.')) {
+            return false;
+          }
+          
+          return true;
+        } catch (e2) {
+          return false;
+        }
+      }
     };
     
-    setShortenedLinks([newLink, ...shortenedLinks]);
-    setUrl('');
+    const trimmedUrl = url.trim();
+    
+    if (!isValidURL(trimmedUrl)) {
+      setError(true);
+      return;
+    }
+    
+    setError(false);
+    setLoading(true);
+    
+    // Normalize URL (add https:// if missing)
+    let normalizedUrl = trimmedUrl;
+    if (!trimmedUrl.startsWith('http://') && !trimmedUrl.startsWith('https://')) {
+      normalizedUrl = `https://${trimmedUrl}`;
+    }
+    
+    try {
+      // Use TinyURL API to shorten the URL
+      const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(normalizedUrl)}`);
+      const shortenedUrl = await response.text();
+      
+      const newLink = {
+        id: Date.now(),
+        original: normalizedUrl,
+        shortened: shortenedUrl,
+        copied: false
+      };
+      
+      setShortenedLinks([newLink, ...shortenedLinks]);
+      setUrl('');
+    } catch (error) {
+      console.error('Error shortening URL:', error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCopy = (id, text) => {
@@ -42,7 +115,7 @@ export default function UrlShortener() {
   };
 
   return (
-    <div className="w-full px-6 lg:px-24 xl:px-32">
+    <div className="bg-purple-50 w-full px-6 lg:px-24 xl:px-32">
       {/* Shortener Input Box */}
       <div className="bg-purple-950 rounded-lg p-6 md:p-8 lg:p-12 relative overflow-hidden">
         {/* Background SVG - Top Right */}
@@ -105,9 +178,12 @@ export default function UrlShortener() {
           
           <button
             onClick={handleShorten}
-            className="bg-blue-400 hover:bg-blue-300 text-white font-bold text-base md:text-lg px-8 md:px-10 py-3 md:py-4 lg:py-5 rounded-lg whitespace-nowrap transition-colors"
+            disabled={loading}
+            className={`${
+              loading ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-400 hover:bg-blue-300 cursor-pointer'
+            } text-white font-bold text-base md:text-lg px-8 md:px-10 py-3 md:py-4 lg:py-5 rounded-lg whitespace-nowrap transition-colors`}
           >
-            Shorten it!
+            {loading ? 'Shortening...' : 'Shorten it!'}
           </button>
         </div>
       </div>
@@ -119,22 +195,22 @@ export default function UrlShortener() {
             <div
               key={link.id}
               className="bg-white rounded-lg p-4 md:p-5 lg:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-6 shadow-sm"
-            >
+              >
               <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-6 border-b md:border-b-0 pb-3 md:pb-0">
-                <p className="text-gray-950 text-sm md:text-base lg:text-lg truncate">
-                  {link.original}
-                </p>
-                
-                <p className="text-blue-400 text-sm md:text-base lg:text-lg font-medium">
-                  {link.shortened}
-                </p>
-              </div>
+              <p className="text-gray-950 text-sm md:text-base lg:text-lg truncate max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
+                {link.original}
+              </p>
+              
+              <p className="text-blue-400 text-sm md:text-base lg:text-lg font-medium">
+                {link.shortened}
+              </p>
+            </div>
               
               <button
                 onClick={() => handleCopy(link.id, link.shortened)}
                 className={`${
                   link.copied ? 'bg-purple-950' : 'bg-blue-400 hover:bg-blue-300'
-                } text-white font-bold text-sm md:text-base px-6 md:px-8 lg:px-10 py-2 md:py-3 rounded-lg transition-colors whitespace-nowrap`}
+                } text-white font-bold text-sm md:text-base px-6 md:px-8 lg:px-10 py-2 md:py-3 rounded-lg transition-colors whitespace-nowrap cursor-pointer`}
               >
                 {link.copied ? 'Copied!' : 'Copy'}
               </button>

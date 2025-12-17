@@ -21,7 +21,7 @@ export default function HeroSection() {
           <p className="text-[#9E9AA8] text-[1.3rem] md:text-[1.2rem] lg:text-[1.25rem] xl:text-[1.375rem] mb-8 lg:mb-9 xl:mb-10 leading-[1.7] lg:leading-[1.65] xl:leading-[1.6] px-1 lg:px-0 xl:pr-8 xl:pr-16">
             Build your brand's recognition and get detailed insights on how your links are performing.
           </p>
-          <button className="bg-[#2BD0D0] hover:bg-[#9AE3E3] transition-colors text-white font-bold px-10 py-[0.875rem] rounded-full text-[1.125rem] md:text-[1.125rem]">
+          <button className="bg-[#2BD0D0] hover:bg-[#9AE3E3] transition-colors text-white font-bold px-10 py-[0.875rem] rounded-full text-[1.125rem] md:text-[1.125rem] cursor-pointer">
             Get Started
           </button>
         </div>

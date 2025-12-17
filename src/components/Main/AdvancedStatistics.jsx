@@ -22,7 +22,7 @@ export default function AdvancedStatistics() {
   ];
 
   return (
-    <section className="bg-purple-50 px-6 py-20 md:py-28 lg:py-36">
+    <section className="bg-purple-50 px-6 pb-20 pt-[150px] md:py-28 lg:py-36">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20 lg:mb-24">
@@ -37,7 +37,7 @@ export default function AdvancedStatistics() {
         {/* Features - Mobile/Tablet (Vertical) */}
         <div className="lg:hidden flex flex-col items-center">
           {features.map((feature, index) => (
-            <div key={index} className="relative w-full max-w-[350px] md:max-w-[512px]">
+            <div key={index} className="relative w-full max-w-[350px] md:max-w-[350px]">
               {/* Feature Card */}
               <div className="bg-white rounded-lg p-8 text-center relative z-10">
                 {/* Icon Circle */}
@@ -63,9 +63,9 @@ export default function AdvancedStatistics() {
         </div>
 
         {/* Features - Desktop (Horizontal) */}
-        <div className="hidden lg:flex items-top justify-center gap-8">
+        <div className="hidden lg:flex justify-center items-start gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="relative flex-1 max-w-[350px]">
+            <div key={index} className="relative flex-1 max-w-[350px] ">
               {/* Feature Card */}
               <div 
                 className="bg-white rounded-lg p-8 text-left relative z-10"
@@ -82,7 +82,7 @@ export default function AdvancedStatistics() {
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-500 text-[0.9375rem] leading-[1.7]">
+                <p className="text-gray-500 text-[1rem] text-[0.9375rem] leading-[1.7]">
                   {feature.description}
                 </p>
               </div>
@@ -94,7 +94,7 @@ export default function AdvancedStatistics() {
                   style={{
                     width: '32px',
                     right: '-32px',
-                    top: `calc(40% + ${index === 0 ? '22px' : index === 1 ? '22px' : '44px'})`
+                    top: `calc(40% + ${index === 0 ? '22px' : index === 1 ? '12px' : '44px'})`
                   }}
                 ></div>
               )}

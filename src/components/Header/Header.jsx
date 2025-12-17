@@ -22,7 +22,7 @@ export default function Header() {
           <a href="#" className="text-[#9E9AA8] hover:text-[#34313D] font-medium text-sm">
             Login
           </a>
-          <button className="bg-[#2BD0D0] hover:bg-[#9AE3E3] text-white font-bold px-6 py-3 rounded-full text-sm">
+          <button className="bg-[#2BD0D0] hover:bg-[#9AE3E3] text-white font-bold px-6 py-3 rounded-full text-sm cursor-pointer">
             Sign Up
           </button>
         </div>
