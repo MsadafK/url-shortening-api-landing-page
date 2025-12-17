@@ -63,19 +63,19 @@ export default function AdvancedStatistics() {
         </div>
 
         {/* Features - Desktop (Horizontal) */}
-        <div className="hidden lg:flex items-center justify-center gap-8">
+        <div className="hidden lg:flex items-top justify-center gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="bg-blue-500 relative flex-1 max-w-[350px]">
+            <div key={index} className="relative flex-1 max-w-[350px]">
               {/* Feature Card */}
               <div 
-                className="bg-red-400 rounded-lg p-8 text-left relative z-10 h-[200px]"
-                // style={{ 
-                //   marginTop: index === 0 ? '0' : index === 1 ? '44px' : '88px' 
-                // }}
+                className="bg-white rounded-lg p-8 text-left relative z-10"
+                style={{ 
+                  marginTop: index === 0 ? '0' : index === 1 ? '44px' : '88px' 
+                }}
                 >
                 {/* Icon Circle */}
                 <div>
-                  <img src={feature.icon} alt={feature.title} className="w-[88px] h-[88px] bg-purple-950 rounded-full flex items-center justify-center -mt-[60px] mb-8" />
+                  <img src={feature.icon} alt={feature.title} className="w-[88px] h-[88px] bg-purple-950 rounded-full flex items-center justify-center -mt-[80px] mb-8" />
                 </div>
                 
                 <h3 className="text-gray-950 text-[1.375rem] font-bold mb-4">
@@ -94,7 +94,7 @@ export default function AdvancedStatistics() {
                   style={{
                     width: '32px',
                     right: '-32px',
-                    top: `calc(50% + ${index === 0 ? '0px' : index === 1 ? '22px' : '44px'})`
+                    top: `calc(40% + ${index === 0 ? '22px' : index === 1 ? '22px' : '44px'})`
                   }}
                 ></div>
               )}
