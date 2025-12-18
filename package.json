@@ -1,12 +1,13 @@
 {
   "name": "url-shortening-api-landing-page",
+  "homepage": "https://msadafk.github.io/url-shortening-api-landing-page/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
   "dev": "vite",
   "build": "vite build",
-  "deploy": "gh-pages -d dist",
+  "deploy": "gh-pages -d dist -b gh-pages",
   "lint": "eslint .",
   "preview": "vite preview"
 },
