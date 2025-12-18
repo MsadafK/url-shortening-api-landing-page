@@ -11,9 +11,7 @@ export const Main = () => {
         <HeroSection/>
       </div>
       
-      <div >
-        {/* <div className="absolute left-0 right-0 top-full -translate-y-1/2 z-10">
-        </div> */}
+      <div className="">
         <UrlShortener/>
         <AdvancedStatistics />
         <BoostLinksCTA />

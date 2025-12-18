@@ -115,9 +115,9 @@ export default function UrlShortener() {
   };
 
   return (
-    <div className="bg-purple-50 w-full px-6 lg:px-24 xl:px-32">
+    <div className="border-2 border-purple-50  bg-purple-50 w-full px-6 lg:px-24 xl:px-32 ">
       {/* Shortener Input Box */}
-      <div className="bg-purple-950 rounded-lg p-6 md:p-8 lg:p-12 relative overflow-hidden">
+      <div className="bg-purple-950 rounded-lg p-6 md:p-8 lg:p-12 relative overflow-hidden -pt-0 pb-12 -mt-24 md:-mt-16 lg:-mt-22">
         {/* Background SVG - Top Right */}
         <svg 
           
